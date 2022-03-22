@@ -11,6 +11,7 @@ class Settings:
         self.GREEN, self.RED, self.BLACK, self.WHITE = ((0, 255, 0), (255, 0, 0),
                                                         (0, 0, 0), (255, 255, 255))
         self.snake_color = self.GREEN
+        self.color_apple_inside = 255, 100, 0
         self.square_size = 20
         self.lvl = 0
         self.fps_default = 10
@@ -71,7 +72,7 @@ class Snake(Settings):
 
     def add_tail(self, arg):
         self.apple_pos.append(arg)
-        self.tail_snake = pg.draw.rect(self.window, (255, 100, 0),
+        self.tail_snake = pg.draw.rect(self.window, self.color_apple_inside,
                                       [arg[0], arg[1], self.square_size-1, self.square_size-1],
                                        border_radius = 2)
         self.tails_pos.append([self.tail_snake.x, self.tail_snake.y])
@@ -121,7 +122,7 @@ class Snake(Settings):
                     settings.snake_color = self.GREEN
                 for a_xy in self.apple_pos:
                     if a_xy in self.tails_pos:
-                            self.tail_snake = pg.draw.rect(self.window, (255, 100, 0),
+                            self.tail_snake = pg.draw.rect(self.window, self.color_apple_inside,
                                                         [a_xy[0], a_xy[1], self.square_size-1, self.square_size-1],
                                                         border_radius = 2)
                 self.tail_snake = pg.draw.rect(self.window, settings.snake_color,
